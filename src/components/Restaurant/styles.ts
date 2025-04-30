@@ -4,11 +4,17 @@ import { cores } from '../../styles'
 export const Card = styled.div`
   background-color: ${cores.branco};
   border: solid 1px ${cores.vermelho};
+
   .ContainerTop {
     display: flex;
     justify-content: space-between;
   }
   position: relative;
+`
+export const Photo = styled.img`
+  width: 100%;
+  height: 217px;
+  object-fit: cover;
 `
 export const Title = styled.h3`
   font-size: 18px;
