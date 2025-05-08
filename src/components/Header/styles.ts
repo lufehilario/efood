@@ -31,4 +31,5 @@ export const TextCart = styled.p`
   font-size: 18px;
   font-weight: bold;
   margin-top: 39px;
+  cursor: pointer;
 `

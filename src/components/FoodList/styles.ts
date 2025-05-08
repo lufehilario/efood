@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
-import { AddCartButton } from '../Food/styles'
 
 export const Container = styled.div`
   max-width: 1024px;
@@ -49,10 +48,6 @@ export const ModalContent = styled.div`
   flex-direction: row;
   position: relative;
   z-index: 3;
-
-  ${AddCartButton} {
-    margin: 0;
-  }
 `
 export const FoodImage = styled.img`
   object-fit: cover;
@@ -90,5 +85,16 @@ export const CloseIcon = styled.img`
   max-height: 16px;
   width: 100%;
   margin: 8px;
+  cursor: pointer;
+`
+export const AddCartButton = styled.button`
+  background-color: ${cores.rosa};
+  color: ${cores.vermelho};
+  border: none;
+  padding: 4px 7px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
   cursor: pointer;
 `

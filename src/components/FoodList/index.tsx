@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Food from '../Food'
-import { AddCartButton } from '../Food/styles'
+import { AddCartButton } from './styles'
 import {
   Container,
   List,
@@ -13,13 +13,23 @@ import {
   CloseIcon
 } from './styles'
 import close from '../../assets/close 1.png'
-import { Restaurant } from '../../pages/Home'
+import { Restaurant, Pedido } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
+import { addItem, open } from '../../store/reducers/cart'
 
 export type Props = {
   restaurant: Restaurant
+  pedido: Pedido
 }
 
-const FoodList = ({ restaurant }: Props) => {
+export const priceFormat = (price: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(price)
+}
+
+const FoodList = ({ restaurant, pedido }: Props) => {
   const [showModal, setShowModal] = useState(false)
   const [foodTitle, setfoodTitle] = useState('')
   const [foodDescription, setfoodDescription] = useState('')
@@ -27,11 +37,17 @@ const FoodList = ({ restaurant }: Props) => {
   const [foodPhotoAlt, setfoodPhotoAlt] = useState('')
   const [foodServe, setfoodServe] = useState('')
   const [foodPrice, setfoodPrice] = useState(0)
-  const priceFormat = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price)
+  const [foodId, setFoodId] = useState(0)
+
+  const dispatch = useDispatch()
+  const addToCart = () => {
+    pedido.id = foodId
+    pedido.nome = foodTitle
+    pedido.foto = foodPhoto
+    pedido.preco = foodPrice
+    dispatch(addItem(pedido))
+    setShowModal(false)
+    dispatch(open())
   }
 
   return (
@@ -49,6 +65,7 @@ const FoodList = ({ restaurant }: Props) => {
                 setfoodPrice(food.preco)
                 setfoodPhotoAlt(food.nome)
                 setfoodPhoto(food.foto)
+                setFoodId(food.id)
               }}
             >
               <Food
@@ -71,7 +88,7 @@ const FoodList = ({ restaurant }: Props) => {
               {foodDescription}
               <p>Serve: {foodServe}</p>
             </FoodDescription>
-            <AddCartButton to={''}>
+            <AddCartButton onClick={addToCart}>
               Adicionar ao carrinho - {priceFormat(foodPrice)}
             </AddCartButton>
           </ModalContainer>
