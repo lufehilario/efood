@@ -13,7 +13,6 @@ import {
   CloseIcon
 } from './styles'
 import close from '../../assets/close 1.png'
-import { Restaurant, Pedido } from '../../pages/Home'
 import { useDispatch } from 'react-redux'
 import { addItem, open } from '../../store/reducers/cart'
 

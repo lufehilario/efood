@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${cores.branco};
@@ -8,6 +8,7 @@ export const Card = styled.div`
   .ContainerTop {
     display: flex;
     justify-content: space-between;
+    padding: 8px;
   }
   position: relative;
 `
@@ -19,13 +20,11 @@ export const Photo = styled.img`
 export const Title = styled.h3`
   font-size: 18px;
   font-weight: bold;
-  margin-top: 8px;
-  margin-left: 8px;
 `
 export const Description = styled.p`
   font-size: 14px;
   font-weight: regular;
-  margin-top: 8px;
+  margin-right: 8px;
   margin-left: 8px;
 `
 export const Rate = styled.div`
@@ -36,7 +35,9 @@ export const Rate = styled.div`
     margin-right: 8px;
   }
   img {
-    margin-right: 8px;
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
   }
   display: flex;
 `
